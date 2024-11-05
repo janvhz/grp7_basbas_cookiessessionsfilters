@@ -1,0 +1,178 @@
+.group-name {
+  text-align: center;
+  margin-bottom: 5px;
+  font-size: 24px;
+  margin-top: 20px;
+}
+
+.group-description {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 18px;
+}
+
+.team-members {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+}
+
+.team-member {
+  position: relative;
+  border: 1px solid transparent;
+  padding: 20px;
+  width: 250px;
+  margin-bottom: 20px;
+  text-align: center;
+  transition: border-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.team-member img {
+  width: 100%; /* Image will take full width of the container */
+  height: 500px; /* Maintain the aspect ratio */
+  max-width: 250px; /* Optional: limit the image size */
+  max-height: 500px; /* Ensure the image doesn't exceed certain height */
+  object-fit: cover; /* Ensures that the image scales properly and avoids distortion */
+  margin-bottom: 10px;
+  transition: transform 0.3s ease-in-out;
+  border-radius: 70px;
+  border-color: violet;
+}
+
+/* Hide details by default */
+.team-member h2,
+.team-member .role-label,
+.team-member .role,
+.team-member .contact-label,
+.team-member .contact,
+.team-member .bio-label,
+.team-member .bio {
+  opacity: 0;
+  max-height: 0;
+  transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
+}
+
+/* Hover effect to show the details */
+.team-member:hover {
+  border-color: #23a6d5; /* Highlight border color on hover */
+  transform: scale(1.05); /* Slight scaling on hover */
+}
+
+.team-member:hover img {
+  transform: scale(1.1); /* Slightly enlarge the image on hover */
+}
+
+.team-member:hover h2,
+.team-member:hover .role-label,
+.team-member:hover .role,
+.team-member:hover .contact-label,
+.team-member:hover .contact,
+.team-member:hover .bio-label,
+.team-member:hover .bio {
+  opacity: 1;
+  max-height: 100px; /* Show the content on hover */
+}
+
+.manage {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 15px;
+  background-color: #23a6d5;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.manage:hover {
+  background-color: #e73c7e;
+}
+
+body {
+  background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Styles for the inquiry form container */
+.inquiry-form {
+  width: 100%;
+  max-width: 400px;
+  margin: 20px auto;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styles for form elements */
+.inquiry-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; 
+}
+
+.inquiry-form div { 
+  display: flex;
+  flex-direction: column;
+}
+
+.inquiry-form label {
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.inquiry-form input,
+.inquiry-form textarea {
+  margin-bottom: 15px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inquiry-form textarea {
+  resize: vertical;
+}
+.inquiry-form button {
+  padding: 5px 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.inquiry-form button:hover {
+  background-color: #0056b3;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .inquiry-form {
+      padding: 10px;
+  }
+}
+
+@keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
