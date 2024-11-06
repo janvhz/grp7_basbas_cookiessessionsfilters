@@ -74,9 +74,6 @@ if (file_exists($dataFile)) {
     <script>
         document.getElementById('inquiryForm').addEventListener('submit', function(event) {
             event.preventDefault(); 
-            // Prevent the default form submission
-            // Fetch the form data and send it via AJAX (optional)
-            // Clear the form inputs
             this.reset();
         });
     </script>
