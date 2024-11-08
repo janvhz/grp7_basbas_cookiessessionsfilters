@@ -1,7 +1,6 @@
 <?php
 session_start();
 
-// Function to sanitize input
 function sanitizeInput($data) {
     return htmlspecialchars(strip_tags(trim($data)));
 }
