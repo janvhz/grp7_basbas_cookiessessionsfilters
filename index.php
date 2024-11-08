@@ -1,10 +1,14 @@
 <?php
 session_start();
 
-setcookie('user', 'visitor', time() + (86400 * 30), "/");
+if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accept_cookies'])) {
+    setcookie('cookies_accepted', 'true', time() + (86400), "/"); // 1 day expiration
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
 
 function sanitizeInput($data) {
-    return htmlspecialchars(strip_tags(trim($data)));
+    return strip_tags(trim($data)) ;
 }
 
 $dataFile = 'group7_data.txt';
@@ -71,11 +75,31 @@ if (file_exists($dataFile)) {
         </form>
     </div>
 
+    <!-- Cookie Banner -->
+<div id="cookieBanner" class="cookie-banner">
+    <p>This website uses cookies to improve user experience. By using our website you consent to all cookies in accordance with our Cookie Policy. <button onclick="acceptCookies()">Accept</button></p>
+</div>
+
     <script>
         document.getElementById('inquiryForm').addEventListener('submit', function(event) {
             event.preventDefault(); 
             this.reset();
         });
+
+    function acceptCookies() {
+        document.cookie = "cookies_accepted=true; max-age=" + (86400) + "; path=/";
+        document.getElementById('cookieBanner').style.display = 'none';
+    }
+
+    function checkCookies() {
+        let cookies = document.cookie.split(';').map(cookie => cookie.trim());
+        let cookiesAccepted = cookies.some(cookie => cookie.startsWith('cookies_accepted='));
+        if (!cookiesAccepted) {
+            document.getElementById('cookieBanner').style.display = 'block';
+        }
+    }
+
+    checkCookies();
     </script>
 </body>
 </html>
