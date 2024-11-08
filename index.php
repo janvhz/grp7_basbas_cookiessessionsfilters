@@ -35,6 +35,30 @@ if (file_exists($dataFile)) {
     <button class="manage" onclick="window.location.href='submit.php'">Manage Team</button>
 </head>
 <body>
+    <script>
+
+function validateName() {
+            const nameInput = document.getElementById('name');
+            const nameError = document.getElementById('nameError');
+            const submitButton = document.querySelector('button[type="submit"]');
+            const nameRegex = /^[a-zA-Z\s]+$/;
+
+            if (!nameRegex.test(nameInput.value)) {
+                nameError.textContent = "Invalid name. Please use only letters and spaces.";
+                submitButton.disabled = true;
+            } else {
+                nameError.textContent = "";
+                submitButton.disabled = false;
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('name').addEventListener('input', validateName);
+        });
+    </script>
+</head>
+<body>
+
     <div class="group-name">BSIT 3L - Group 7</div>
     <p class="group-description">"Integrative Programming"</p>
     <div class="team-members">
@@ -53,13 +77,13 @@ if (file_exists($dataFile)) {
         <?php endforeach; ?>
     </div>
     
-    <!-- Inquiry Form -->
     <div class="inquiry-form">
         <h2>Contact Us</h2>
         <form id="inquiryForm" action="form.php" method="post">
             <div>
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
+                <span id="nameError" style="color:red;"></span>
             </div>
             <div>
                 <label for="email">Email:</label>
@@ -75,17 +99,11 @@ if (file_exists($dataFile)) {
         </form>
     </div>
 
-    <!-- Cookie Banner -->
 <div id="cookieBanner" class="cookie-banner">
     <p>This website uses cookies to improve user experience. By using our website you consent to all cookies in accordance with our Cookie Policy. <button onclick="acceptCookies()">Accept</button></p>
 </div>
 
     <script>
-        document.getElementById('inquiryForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
-            this.reset();
-        });
-
     function acceptCookies() {
         document.cookie = "cookies_accepted=true; max-age=" + (86400) + "; path=/";
         document.getElementById('cookieBanner').style.display = 'none';
