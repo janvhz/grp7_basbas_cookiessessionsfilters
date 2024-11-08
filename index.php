@@ -48,12 +48,31 @@ function validateName() {
                 submitButton.disabled = true;
             } else {
                 nameError.textContent = "";
+                if (document.getElementById('emailError').textContent === "") {
                 submitButton.disabled = false;
             }
         }
+    }
+        function validateEmail() {
+        const emailInput = document.getElementById('email');
+        const emailError = document.getElementById('emailError');
+        const submitButton = document.querySelector('button[type="submit"]');
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!emailRegex.test(emailInput.value)) {
+            emailError.textContent = "Invalid email address.";
+            submitButton.disabled = true;
+        } else {
+            emailError.textContent = "";
+            if (document.getElementById('nameError').textContent === "") {
+                submitButton.disabled = false;
+            }
+        }
+    }
 
         document.addEventListener('DOMContentLoaded', function() {
             document.getElementById('name').addEventListener('input', validateName);
+            document.getElementById('email').addEventListener('input', validateEmail);
         });
     </script>
 </head>
@@ -88,6 +107,7 @@ function validateName() {
             <div>
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
+                <span id="emailError" style="color:red;"></span>
             </div>
             <div>
                 <label for="message">Message:</label>
