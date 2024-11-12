@@ -14,7 +14,7 @@
 .team-members {
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap; /* Allow wrapping for smaller screens */
+  flex-wrap: wrap;
 }
 
 .team-member {
@@ -28,18 +28,17 @@
 }
 
 .team-member img {
-  width: 100%; /* Image will take full width of the container */
-  height: 500px; /* Maintain the aspect ratio */
-  max-width: 250px; /* Optional: limit the image size */
-  max-height: 500px; /* Ensure the image doesn't exceed certain height */
-  object-fit: cover; /* Ensures that the image scales properly and avoids distortion */
+  width: 100%; 
+  height: 500px; 
+  max-width: 250px; 
+  max-height: 500px; 
+  object-fit: cover; 
   margin-bottom: 10px;
   transition: transform 0.3s ease-in-out;
   border-radius: 70px;
   border-color: violet;
 }
 
-/* Hide details by default */
 .team-member h2,
 .team-member .role-label,
 .team-member .role,
@@ -52,14 +51,13 @@
   transition: opacity 0.3s ease-in-out, max-height 0.3s ease-in-out;
 }
 
-/* Hover effect to show the details */
 .team-member:hover {
-  border-color: #23a6d5; /* Highlight border color on hover */
-  transform: scale(1.05); /* Slight scaling on hover */
+  border-color: #23a6d5; 
+  transform: scale(1.05); 
 }
 
 .team-member:hover img {
-  transform: scale(1.1); /* Slightly enlarge the image on hover */
+  transform: scale(1.1); 
 }
 
 .team-member:hover h2,
@@ -70,7 +68,7 @@
 .team-member:hover .bio-label,
 .team-member:hover .bio {
   opacity: 1;
-  max-height: 100px; /* Show the content on hover */
+  max-height: 100px; 
 }
 
 .manage {
@@ -103,27 +101,23 @@ body {
   align-items: center;
 }
 
-/* Styles for the inquiry form container */
-.inquiry-form {
-  width: 100%;
-  max-width: 400px;
-  margin: 20px auto;
-  padding: 10px;
+.inquiry-form-container {
+  display: none; 
   background-color: #f9f9f9;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px; 
+  border-radius: 10px; 
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+  max-width: 400px; 
+  margin: 20px auto; 
 }
 
-/* Styles for form elements */
-.inquiry-form form {
+.inquiry-form-container form {
   display: flex;
   flex-direction: column;
-  gap: 15px; 
 }
 
-.inquiry-form div { 
-  display: flex;
-  flex-direction: column;
+.inquiry-form {
+  margin-bottom: 10px; 
 }
 
 .inquiry-form label {
@@ -133,35 +127,34 @@ body {
 
 .inquiry-form input,
 .inquiry-form textarea {
-  margin-bottom: 15px;
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
-  width: 100%;
-  box-sizing: border-box;
+  box-sizing: border-box; 
 }
 
 .inquiry-form textarea {
-  resize: vertical;
+  height: 80px; 
 }
+
 .inquiry-form button {
-  padding: 5px 10px;
+  padding: 10px; 
   background-color: #007bff;
   color: white;
   border: none;
   border-radius: 5px;
+  font-size: 14px; 
   cursor: pointer;
-  font-size: 14px;
 }
 
 .inquiry-form button:hover {
-  background-color: #0056b3;
+  background-color: #0056b3; 
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
-  .inquiry-form {
-      padding: 10px;
+  .inquiry-form-container {
+      padding: 10px; 
   }
 }
 
@@ -175,4 +168,143 @@ body {
   100% {
       background-position: 0% 50%;
   }
+}
+
+.cookie-banner {
+    display: none;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #f1f1f1;
+    text-align: center;
+    padding: 10px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+}
+.cookie-banner button {
+    margin-left: 10px;
+    padding: 5px 10px;
+}
+
+body {
+  margin: 0;
+  padding-top: 30px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin: o;
+  padding: 0;
+  background-color: #333;
+  z-index: 1000;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo h1 {
+  margin: 0;
+  color: #fff;
+  font-size: 24px;
+}
+
+.nav-links a {
+  color: #fff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.nav-links a:hover {
+  text-decoration: underline;
+}
+
+body {
+  margin: 0;
+}
+
+footer {
+  background-color: black;
+  text-align: center;
+  padding: 5px;
+  width: 100%;
+}
+
+.footer-container {
+  max-width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+  color: white;
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.footer-section {
+  margin: 0 20px;
+  text-align: left;
+}
+
+.footer-section h3 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: white;
+}
+
+.footer-section a,
+.legal-links a {
+  display: block;
+  color: #007bff;
+  text-decoration: none;
+  margin-bottom: 5px;
+}
+
+.footer-section a:hover,
+.legal-links a:hover {
+  text-decoration: underline;
+}
+
+.legal-links ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.legal-links li {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: white;
+}
+
+.social-media {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.social-media a {
+  margin: 0 10px;
+  display: inline-block;
+}
+
+.social-media img {
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+}
+
+footer p {
+  font-size: 14px;
+  color: #fff;
+  margin-top: 10px;
 }
