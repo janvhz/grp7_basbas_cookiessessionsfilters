@@ -2,7 +2,7 @@
 session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accept_cookies'])) {
-    setcookie('cookies_accepted', 'true', time() + (86400), "/"); // 1 day expiration
+    setcookie('cookies_accepted', 'true', time() + (86400 * 30), "/");
     header("Location: " . $_SERVER['PHP_SELF']);
     exit();
 }
@@ -32,7 +32,6 @@ if (file_exists($dataFile)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Group 7 Team Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <button class="manage" onclick="window.location.href='submit.php'">Manage Team</button>
 </head>
 <body>
     <script>
@@ -77,9 +76,19 @@ function validateName() {
     </script>
 </head>
 <body>
-
-    <div class="group-name">BSIT 3L - Group 7</div>
-    <p class="group-description">"Integrative Programming"</p>
+<header>
+        <div class="header-container">
+            <div class="logo">
+                <h1>Group 7 Team Portfolio</h1>
+            </div>
+            <nav class="nav-links">
+                <a href="#home">Home</a>
+                <a href="submit.php">Team</a>
+                <a href="#" onclick="toggleInquiryForm(event)">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+    
     <div class="team-members">
         <?php foreach ($teamArray as $index => $memberData): 
             $member = explode('|', sanitizeInput($memberData)); ?>
@@ -96,24 +105,24 @@ function validateName() {
         <?php endforeach; ?>
     </div>
     
-    <div class="inquiry-form">
+    <div class="inquiry-form-container" id="contact" style="display: none;">
         <h2>Contact Us</h2>
         <form id="inquiryForm" action="form.php" method="post">
-            <div>
+            <div class="inquiry-form">
                 <label for="name">Name:</label>
                 <input type="text" id="name" name="name" required>
                 <span id="nameError" style="color:red;"></span>
             </div>
-            <div>
+            <div class="inquiry-form">
                 <label for="email">Email:</label>
                 <input type="email" id="email" name="email" required>
                 <span id="emailError" style="color:red;"></span>
             </div>
-            <div>
+            <div class="inquiry-form">
                 <label for="message">Message:</label>
                 <textarea id="message" name="message" required></textarea>
             </div>
-            <div>
+            <div class="inquiry-form">
                 <button type="submit">Submit</button>
             </div>
         </form>
@@ -123,9 +132,60 @@ function validateName() {
     <p>This website uses cookies to improve user experience. By using our website you consent to all cookies in accordance with our Cookie Policy. <button onclick="acceptCookies()">Accept</button></p>
 </div>
 
+<footer>
+<div class="footer-container">
+        <div class="footer-links">
+            <div class="footer-section">
+                <h3>About Us</h3>
+                <a href="#about">Company</a>
+            </div>
+            <div class="legal-links">
+                <h3>Terms & Policies</h3>
+        <ul>
+                <li><a href="#terms">Terms of Service</a></li>
+                <li><a href="#policy">Privacy Policy</a></li>
+        </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Support</h3>
+                <a href="#faq">FAQ</a>
+            </div>
+        </div>
+    <div class="social-media">
+        <a href="https://www.facebook.com" target="_blank">
+            <img src="facebook.jpg" alt="Facebook" style="width:32px;height:32px;">
+        </a>
+        <a href="https://www.twitter.com" target="_blank">
+            <img src="twitter.png" alt="Twitter" style="width:32px;height:32px;">
+        </a>
+        <a href="https://www.instagram.com" target="_blank">
+            <img src="instagram.jpg" alt="Instagram" style="width:32px;height:32px;">
+        </a>
+        <a href="https://www.whatsapp.com" target="_blank">
+            <img src="whatsapp.jpg" alt="Whatsapp" style="width:32px;height:32px;">
+        </a>
+    </div>
+ </div>
+ <p>&copy; Copyright 2024 Group 7 IT3L. All Rights Reserved.</p>
+</footer>
+
     <script>
+    function toggleInquiryForm(event) {
+    event.preventDefault();
+    const inquiryFormContainer = document.getElementById('contact');
+    if (inquiryFormContainer.style.display === 'none') {
+        inquiryFormContainer.style.display = 'block';
+        window.scrollTo({
+            top: inquiryFormContainer.offsetTop,
+            behavior: 'smooth'
+        });
+    } else {
+        inquiryFormContainer.style.display = 'none';
+    }
+}
+
     function acceptCookies() {
-        document.cookie = "cookies_accepted=true; max-age=" + (86400) + "; path=/";
+        document.cookie = "cookies_accepted=true; max-age=" + (86400 * 30) + "; path=/";
         document.getElementById('cookieBanner').style.display = 'none';
     }
 
